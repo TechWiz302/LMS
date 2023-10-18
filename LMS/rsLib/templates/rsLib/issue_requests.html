@@ -1,0 +1,314 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 " />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'rsLib/admin.css' %}"
+    />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300&family=Oxygen:wght@300&family=Playfair+Display&family=Poppins:wght@300&family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CDN Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- Animate CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--    Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/a769059ecb.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Boxicons JS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Icons8 -->
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+
+    <!-- Google Maps API -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9-q7ivz-3_pDdQa6p4hGcj0K6w3B0O4I&libraries=places"></script> -->
+
+    <title>Reading Oasis | Issue Request</title>
+  </head>
+
+  <body>
+    <!-- Side Nav -->
+    <section class="" id="sidebar">
+      <a href="#" class="brand">
+        <!-- <img src="{% static 'images/img2.png' %}" alt="Logo" class="d-inline-block align-text-center logo-image" />
+			<span class="text"></span> -->
+        <div id="Logo-Image" class="image-sec">
+          <a class="navbar-brand" href="#">
+            <img
+              src="{% static 'images/img2.png' %}"
+              alt="Logo"
+              class="d-inline-block align-text-center logo-image"
+            />
+          </a>
+          <div class="img-con">
+            <p class="img-p container-fluid">Reading Oasis</p>
+            <br />
+            <p class="img-sub container-fluid">Public Library</p>
+          </div>
+        </div>
+      </a>
+      <ul class="side-menu top">
+        <li>
+          <a href="{% url 'dashboard' %}">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_dashboard/issued_books/' %}">
+            <i class="bx bxs-book"></i>
+            <span class="text">Issued Books</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{% url 'admin_dashboard/issue_requests/' %}">
+            <i class="fa-solid fa-hourglass-start"></i>
+            <span class="text">Pending Requests</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_dashboard/registered_user/' %}">
+            <i class="fa-solid fa-user"></i>
+            <span class="text">Registered Users</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_dashboard/admin_members/' %}">
+            <i class="fa-solid fa-people-group"></i>
+            <span class="text">Team</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'admin_dashboard/admin_logout/' %}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="text">Log Out</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Side Nav -->
+
+    <!-- Content Section -->
+
+    <section class="" id="content">
+      <!-- NAVBAR -->
+      {% include "rsLib/admin_nav.html" %}
+      <!-- NAVBAR -->
+
+      <!-- MAIN -->
+      <main>
+        <div class="head-title">
+          <div class="left">
+            <h1>Issue Requests</h1>
+          </div>
+        </div>
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Requests ({{ total_requests }})</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th class="text-center">User</th>
+                  <th class="text-center">Book Title</th>
+                  <th class="text-center">Volume ID</th>
+                  <th class="text-center">Requested At</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                {% for request in issue_requests %}
+                <tr>
+                  <td>{{request.user.username}}</td>
+                  <td>{{request.title}}</td>
+                  <td>{{request.volume_id}}</td>
+                  <td>{{request.requested_at}}</td>
+                  <td>
+                    <button
+                      class="btn"
+                      onclick="confirmRequest('{{ request.id }}')"
+                    >
+                      Confirm
+                    </button>
+                    <button
+                      class="btn btn-danger"
+                      onclick="deleteRequest('{{ request.id }}')"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+      <!-- MAIN -->
+    </section>
+
+    <script>
+      function confirmRequest(requestId) {
+        // Send an AJAX request to confirm the issue request
+        fetch(`/confirm_request/${requestId}/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}", // Include CSRF token
+          },
+        }).then((response) => {
+          if (response.ok) {
+            alert("Request confirmed! Book is issued.");
+            window.location.reload(); // Refresh the page after confirmation
+          } else {
+            alert("Failed to confirm request.");
+          }
+        });
+      }
+
+      function deleteRequest(requestId) {
+        fetch(`/delete_request/${requestId}/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
+        }).then((response) => {
+          if (response.ok) {
+            alert("Request deleted successfully.");
+            window.location.reload(); 
+          } else {
+            alert("Failed to delete request.");
+          }
+        });
+      }
+    </script>
+
+    <script>
+      const allSideMenu = document.querySelectorAll(
+        "#sidebar .side-menu.top li a"
+      );
+
+      allSideMenu.forEach((item) => {
+        const li = item.parentElement;
+
+        item.addEventListener("click", function () {
+          allSideMenu.forEach((i) => {
+            i.parentElement.classList.remove("active");
+          });
+          li.classList.add("active");
+        });
+      });
+
+      const menuBar = document.querySelector("#content nav .bx.bx-menu");
+      const sidebar = document.getElementById("sidebar");
+      const imageSec = document.getElementById("Logo-Image");
+      const iconBar = document.querySelector(".side-menu");
+
+      function toggleActions() {
+        if (window.innerWidth < 769) {
+          sidebar.classList.toggle("hide");
+          imageSec.classList.toggle("mask");
+          iconBar.classList.toggle("padIcon");
+        }
+      }
+
+      menuBar.addEventListener("click", function () {
+        toggleActions(); 
+
+        if (window.innerWidth >= 769) {
+          sidebar.classList.toggle("hide");
+          imageSec.classList.toggle("mask");
+          iconBar.classList.toggle("padIcon");
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth < 769) {
+          sidebar.classList.add("hide");
+          imageSec.classList.add("mask");
+          iconBar.classList.add("padIcon");
+        } else {
+          sidebar.classList.remove("hide");
+          imageSec.classList.remove("mask");
+          iconBar.classList.remove("padIcon");
+        }
+      });
+
+      const searchButton = document.querySelector(
+        "#content nav form .form-input button"
+      );
+      const searchButtonIcon = document.querySelector(
+        "#content nav form .form-input button .bx"
+      );
+      const searchForm = document.querySelector("#content nav form");
+
+      searchButton.addEventListener("click", function (e) {
+        if (window.innerWidth < 576) {
+          e.preventDefault();
+          searchForm.classList.toggle("show");
+          if (searchForm.classList.contains("show")) {
+            searchButtonIcon.classList.replace("bx-search", "bx-x");
+          } else {
+            searchButtonIcon.classList.replace("bx-x", "bx-search");
+          }
+        }
+      });
+
+      if (window.innerWidth < 768) {
+        sidebar.classList.add("hide");
+      } else if (window.innerWidth > 576) {
+        searchButtonIcon.classList.replace("bx-x", "bx-search");
+        searchForm.classList.remove("show");
+      }
+
+      window.addEventListener("resize", function () {
+        if (this.innerWidth > 576) {
+          searchButtonIcon.classList.replace("bx-x", "bx-search");
+          searchForm.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>

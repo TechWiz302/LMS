@@ -1,0 +1,484 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 "/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'rsLib/style.css' %}"
+    />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&family=Playfair+Display&family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CDN Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+
+    <!-- Animate CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--    Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/a769059ecb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+
+    <!-- Google Maps API -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9-q7ivz-3_pDdQa6p4hGcj0K6w3B0O4I&libraries=places"></script> -->
+
+    <title>Reading Oasis | Library Management System</title>
+  </head>
+  <body>
+    <section id="header">
+      {% include 'rsLib/header.html' %}
+    </section>
+
+    <section id="welcome">
+      <div id="cont" class="wel-cont">
+        <div class="row">
+          <div class="welcome-sec">
+            <div class="img-div">
+              <img id="libImg" class="lib-img animate__animated animate__fadeInLeft animate__slow" src="{% static 'images/lib.png' %}" alt="lib"/>
+            </div>
+            <div id="welcomeMsg" class="overlay animate__animated animate__fadeInRight animate__slow">
+              <p id="library-description">
+                Welcome to Reading Oasis Public Library
+              </p>
+              <p class="subs">Bringing Books to Your Fingertips</p>
+              <br />
+              <a href="{% url 'collection' %}">
+                <button type="button" class="ex-btn">Explore</button>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+        <div class="animated-div animate__animated">
+          <i class="icon fa-solid fa-arrow-down" style="color: #40192f"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="" id="about-home">
+      <div class="container-fluid">
+        <div class="box box-content text-center animate__animated">
+          <i class="fa-solid fa-handshake handshake"></i>
+          <p class="text-center">Library Services from the comfort of your home</p>
+          <span class="d-flex justify-content-center">At Resource Oasis, we we prioritize your safety and convenience. Our system enables you to browse and borrow books from our vast collection from anywhere, anytime.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="" id="collection-home">
+      <div class="container-fluid">
+        <div class="text-center exp-con animate__animated">
+          <p class="exp">Explore Our Collection</p>
+          <span class="d-flex justify-content-center">Our collection consists of wide range of books spanning across different genres. Whether you're looking for fiction or non - fiction, we have something for everyone.</span>
+        </div>
+        <div class="d-none d-sm-block">
+          <div class="col-box container-fluid">
+            <div class="row">
+              {% for book_data in book_data_list %}
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="book-item">
+                  {% if book_data.cover_image %}
+                  <div class="image-container text-center">
+                    <a href="{% url 'book_details' book_data.title book_data.volume_id%}">
+                      <img class="book-image animate__animated" src="{{ book_data.cover_image }}" alt="Cover Image">
+                    </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="col-box carousel slide d-sm-none" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for book_data in book_data_list %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="image-container text-center">
+                <a href="{% url 'book_details' book_data.title book_data.volume_id%}">
+                  <img class="book-image animate__animated" src="{{ book_data.cover_image }}" alt="Cover Image">
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target=".carousel" data-bs-slide="prev">
+            <span class="tag-icon carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target=".carousel" data-bs-slide="next">
+            <span class="tag-icon carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </button>
+        </div>
+        <div class="text-center">
+          <a href="{% url 'collection' %}">
+            <button class="col-btn">Start Exploring</button>
+          </a>
+          
+        </div>
+    </section>
+
+    <section class="events">
+      <div class="container-fluid">
+        <div class="text-center eve-con animate__animated">
+          <p>Join Our Book Club</p>
+          <span class="d-flex justify-content-center">At Resource Oasis, we believe in the power of reading to bring people together. Join our virtual book club to connect with other book lovers and discuss your favorite reads.</span>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div id="eventContent" class="d-flex col event-details">
+            <div class="d-flex col-12 col-md-2">
+              <div class="date text-end col-6">
+              <p id="date1">
+                06
+              </p>
+            </div>
+              <div class="day col-6">
+              <p id="day1">
+                Wed
+              </p>
+              <p id="mon1">
+                Jun
+              </p>
+            </div>
+            </div>
+            <div class="eve-name col-12 col-md-8">
+              <p>
+                Annual Summer Book Sale / Viman Nagar, Pune
+              </p>
+            </div>
+            <div class="rsvp-button col-12 col-md-2 text-center">
+              <button type="button" class="eve-btn">RSVP</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="row">
+          <div id="toddlerDiv" class="d-flex col event-details">
+            <div class="d-flex col-12 col-md-2">
+              <div class="date text-end col-6">
+              <p id="date2">
+                28
+              </p>
+            </div>
+              <div class="day col-6">
+              <p id="day2">
+                Fri
+              </p>
+              <p id="mon2">
+                Sept
+              </p>
+            </div>
+            </div>
+            <div class="eve-name col-12 col-md-8">
+              <p>
+                Toddler Storytime / Viman Nagar, Pune
+              </p>
+            </div>
+            <div class="rsvp-button col-12 col-md-2 text-center">
+              <button type="button" class="eve-btn">RSVP</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="row">
+          <div id="resourceDiv" class="d-flex col event-details">
+            <div class="d-flex col-12 col-md-2">
+              <div class="date text-end col-6">
+              <p id="date3">
+                05
+              </p>
+            </div>
+              <div class="day col-6">
+              <p id="day3">
+                Mon
+              </p>
+              <p id="mon3">
+                Nov
+              </p>
+            </div>
+            </div>
+            <div class="eve-name col-12 col-md-8">
+              <p>
+                Resource Oasis's Book Club / Viman Nagar, Pune
+              </p>
+            </div>
+            <div class="rsvp-button col-12 col-md-2 text-center">
+              <button type="button" class="eve-btn">RSVP</button>
+            </div>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="join-button col text-center">
+              <button type="button" class="join-btn">Join Now</button>
+        </div>
+      </div> 
+    </section>
+
+    <section class="footer-margin" id="footer">
+      {% include 'rsLib/footer.html' %}
+    </section>
+    
+
+    <!-- Inline JS -->
+
+    <script>
+      window.addEventListener('scroll', function () {
+          var element = document.querySelector('.eve-con');
+          var position = element.getBoundingClientRect().top;
+          var windowHeight = window.innerHeight;
+
+          if (position < windowHeight) {
+            element.classList.add('animate__fadeIn');
+            element.classList.add('animate__slower');
+          }
+        });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var mediaQuery = window.matchMedia('(max-width: 767px)');
+        var date1 = document.getElementById("date1");
+        var day1 = document.getElementById("day1");
+        var mon1 = document.getElementById("mon1");
+
+        var date2 = document.getElementById("date2");
+        var day2 = document.getElementById("day2");
+        var mon2 = document.getElementById("mon2");
+
+        var date3 = document.getElementById("date3");
+        var day3 = document.getElementById("day3");
+        var mon3 = document.getElementById("mon3");
+        
+        function handleMediaQuery(mediaQuery) {
+          if (mediaQuery.matches) {
+            date1.innerHTML = '06<span class="superscript">th</span>'
+          } else{
+            date1.innerHTML = '06';
+          }
+
+          if (mediaQuery.matches) {
+            day1.innerHTML = 'Wed,'
+          } else{
+            day1.innerHTML = 'Wed';
+          }
+
+          if (mediaQuery.matches) {
+            mon1.innerHTML = 'June'
+          } else{
+            mon1.innerHTML = 'Jun';
+          }
+
+          if (mediaQuery.matches) {
+            date2.innerHTML = '28<span class="superscript">th</span>'
+          } else{
+            date2.innerHTML = '28';
+          }
+
+          if (mediaQuery.matches) {
+            day2.innerHTML = 'Fri,'
+          } else{
+            day2.innerHTML = 'Fri';
+          }
+
+          if (mediaQuery.matches) {
+            mon2.innerHTML = 'September'
+          } else{
+            mon2.innerHTML = 'Sept';
+          }
+
+          if (mediaQuery.matches) {
+            date3.innerHTML = '05<span class="superscript">th</span>'
+          } else{
+            date3.innerHTML = '05';
+          }
+
+          if (mediaQuery.matches) {
+            day3.innerHTML = 'Mon,'
+          } else{
+            day3.innerHTML = 'Mon';
+          }
+
+          if (mediaQuery.matches) {
+            mon3.innerHTML = 'November'
+          } else{
+            mon3.innerHTML = 'Nov';
+          }
+        }
+        // Initial check
+        handleMediaQuery(mediaQuery);
+        
+        // Add event listener for changes in the media query
+        mediaQuery.addEventListener('change', function(mediaQuery) {
+          handleMediaQuery(mediaQuery);
+        });
+      });
+    </script>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var mediaQuery = window.matchMedia('(max-width: 767px)');
+        var eventContent = document.getElementById("eventContent");
+        var toddlerDiv = document.getElementById("toddlerDiv");
+        var resourceDiv = document.getElementById("resourceDiv");
+
+        
+        
+        function handleMediaQuery(mediaQuery) {
+          if (mediaQuery.matches) {
+            eventContent.classList.remove("d-flex");
+          } else{
+            eventContent.classList.add("d-flex");
+          }
+
+          if (mediaQuery.matches) {
+            toddlerDiv.classList.remove("d-flex");
+          } else{
+            toddlerDiv.classList.add("d-flex");
+          }
+
+          if (mediaQuery.matches) {
+            resourceDiv.classList.remove("d-flex");
+          } else{
+            resourceDiv.classList.add("d-flex");
+          }
+
+        }
+        // Initial check
+        handleMediaQuery(mediaQuery);
+        
+        // Add event listener for changes in the media query
+        mediaQuery.addEventListener('change', function(mediaQuery) {
+          handleMediaQuery(mediaQuery);
+        });
+      });
+    </script>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var windowWidth = window.innerWidth;
+        var carouselItems = document.querySelectorAll('.col-box .carousel-item');
+    
+        function updateCarouselItems() {
+          if (windowWidth < 576) {
+            carouselItems.forEach(function(item) {
+              item.classList.add('carousel-item');
+            });
+          } else {
+            carouselItems.forEach(function(item) {
+              item.classList.remove('carousel-item');
+            });
+          }
+        }
+    
+        window.addEventListener('resize', function() {
+          windowWidth = window.innerWidth;
+          updateCarouselItems();
+        });
+    
+        updateCarouselItems();
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var mediaQuery = window.matchMedia('(max-width: 768px)');
+        var libImg = document.getElementById("libImg");
+        var overlay = document.getElementById("welcomeMsg");
+        
+        function handleMediaQuery(mediaQuery) {
+          if (mediaQuery.matches) {
+            libImg.classList.remove("animate__animated");
+            libImg.classList.remove("animate__fadeInLeft");
+            libImg.classList.remove("animate__slow");
+          }
+
+          if (mediaQuery.matches) {
+            overlay.classList.remove("animate__animated");
+            overlay.classList.remove("animate__fadeInRight");
+            overlay.classList.remove("animate__slow");
+          }
+        }
+        // Initial check
+        handleMediaQuery(mediaQuery);
+        
+        // Add event listener for changes in the media query
+        mediaQuery.addEventListener('change', function(mediaQuery) {
+          handleMediaQuery(mediaQuery);
+        });
+      });
+      
+    </script>
+    
+
+    <script>
+      window.addEventListener("scroll", function () {
+        var animatedDiv = document.querySelector(".animated-div");
+        var boxDiv = document.querySelector(".box-content");
+        var expDiv = document.querySelector(".exp-con");
+
+        var distanceFromTop = animatedDiv.getBoundingClientRect().top;
+        if (distanceFromTop - window.innerHeight < 0) {
+          animatedDiv.classList.add("animate__fadeInUp");
+          animatedDiv.classList.add("animate__slow");
+        }
+        var d1 = boxDiv.getBoundingClientRect().top;
+        if (d1 - window.innerHeight < 0) {
+          boxDiv.classList.add("animate__fadeIn");
+          boxDiv.classList.add("animate__slower");
+        }
+        var d2 = expDiv.getBoundingClientRect().top;
+        if (d2 - window.innerHeight < 0) {
+          expDiv.classList.add("animate__fadeIn");
+          expDiv.classList.add("animate__slower");
+        }
+      });
+    </script>
+
+    <!-- JS Script CDNs and reference -->
+
+    <script src="{% static 'rsLib/script.js' %}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+      integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

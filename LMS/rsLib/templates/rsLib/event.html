@@ -1,0 +1,210 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'rsLib/style.css' %}"
+    />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&family=Playfair+Display&family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CDN Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+
+    <!-- Animate CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--    Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/a769059ecb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+    <title>Resource Oasis | Events</title>
+</head>
+<body>
+    <section>
+        {% include "rsLib/header.html" %}
+    </section>
+
+    <section id="event">
+        <div class="eve-container container-fluid">
+            <div class="event-con text-center">
+                <p class="text-center">Upcoming Events</p>
+                <span class="d-flex justify-content-center">Resource Oasis is abuzz with anticipation as a series of exciting events are set to take place.</span>
+            </div>
+            <div class="event-box">
+                <div class="boxDiv container-fluid">
+                    <div class="boxCon col-12 col-xl-6">
+                        <img class="event-images" src="{% static 'images/1.png' %}" alt="1">
+                    </div>
+                    <div class="boxCon col-12 col-xl-6">
+                        <div class="rsvp-content">
+                            <p class="address text-center">
+                                Wed 06, June | Viman Nagar, Pune
+                            </p>
+                            <p class="event-name text-center">
+                                Annual Summer Book Sale
+                            </p>
+                            <div class="rsvp-btn text-center">
+                                <button type="button" class="event-btn">RSVP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+        <div class="eve-container container-fluid">
+            <div class="event-box">
+                <div class="boxDiv container-fluid">
+                    <div class="boxCon col-12 col-xl-6">
+                        <img class="event-images" src="{% static 'images/2.png' %}" alt="1">
+                    </div>
+                    <div class="boxCon col-12 col-xl-6">
+                        <div class="rsvp-content">
+                            <p class="address text-center">
+                                Mon 24, September | Viman Nagar, Pune
+                            </p>
+                            <p class="event-name text-center">
+                                Preschool Storytime
+                            </p>
+                            <div class="rsvp-btn text-center">
+                                <button type="button" class="event-btn">RSVP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="eve-container container-fluid">
+            <div class="event-box">
+                <div class="boxDiv container-fluid">
+                    <div class="boxCon col-12 col-xl-6">
+                        <img class="event-images" src="{% static 'images/3.png' %}" alt="1">
+                    </div>
+                    <div class="boxCon col-12 col-xl-6">
+                        <div class="rsvp-content">
+                            <p class="address text-center">
+                                Wed 26, September | Viman Nagar, Pune
+                            </p>
+                            <p class="event-name text-center">
+                                Family Storytime
+                            </p>
+                            <div class="rsvp-btn text-center">
+                                <button type="button" class="event-btn">RSVP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="eve-container container-fluid">
+            <div class="event-box">
+                <div class="boxDiv container-fluid">
+                    <div class="boxCon col-12 col-xl-6">
+                        <img class="event-images" src="{% static 'images/4.png' %}" alt="1">
+                    </div>
+                    <div class="boxCon col-12 col-xl-6">
+                        <div class="rsvp-content">
+                            <p class="address text-center">
+                                Fri 28, October | Viman Nagar, Pune
+                            </p>
+                            <p class="event-name text-center">
+                                Toddler Storytime
+                            </p>
+                            <div class="rsvp-btn text-center">
+                                <button type="button" class="event-btn">RSVP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eve-container container-fluid">
+            <div class="event-box">
+                <div class="boxDiv container-fluid">
+                    <div class="boxCon col-12 col-xl-6">
+                        <img class="event-images" src="{% static 'images/5.png' %}" alt="1">
+                    </div>
+                    <div class="boxCon col-12 col-xl-6">
+                        <div class="rsvp-content">
+                            <p class="address text-center">
+                                Tue 06, November | Viman Nagar, Pune
+                            </p>
+                            <p class="event-name text-center">
+                                Resource Oasis's Book Club
+                            </p>
+                            <div class="rsvp-btn text-center">
+                                <button type="button" class="event-btn">RSVP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="eve-container container-fluid">
+            <div class="event-box">
+                <div class="boxDiv container-fluid">
+                    <div class="boxCon col-12 col-xl-6">
+                        <img class="event-images" src="{% static 'images/6.png' %}" alt="1">
+                    </div>
+                    <div class="boxCon col-12 col-xl-6">
+                        <div class="rsvp-content">
+                            <p class="address text-center">
+                                Mon 03, December | Viman Nagar, Pune
+                            </p>
+                            <p class="event-name text-center">
+                                Christmas Community yard Sale
+                            </p>
+                            <div class="rsvp-btn text-center">
+                                <button type="button" class="event-btn">RSVP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="footer">
+        {% include "rsLib/footer.html" %}
+    </section>
+
+    <!-- JS Script CDNs and reference -->
+
+    <script src="{% static 'rsLib/script.js' %}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+      integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

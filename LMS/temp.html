@@ -1,0 +1,82 @@
+<!-- 1st template main(if nothing happens this is the code you use) -->
+<!-- <div class="d-flex flex-row mb-3">
+  <div class="image-sec">
+    <a class="navbar-brand" href="#">
+      <img
+        src="{% static 'images/img2.png' %}"
+        alt="Logo"
+        class="d-inline-block align-text-top logo-image"
+      />
+    </a>
+    <div class="img-con">
+      <p class="img-p">Reading Oasis</p>
+      <br />
+      <p class="img-sub">Public Library</p>
+    </div>
+  </div>
+  <div class="nav-sec">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Collection</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa-solid fa-user-tie"></i></a>
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+
+<section id="welcome">
+    <div class="container welcome-sec">
+      <img class="lib-img z-0 position-absolute animate__animated animate__fadeInLeft animate__slow" src="{% static 'images/lib.png' %}" alt="lib">
+      <div class="overlay z-2 position-absolute animate__animated animate__fadeInRight animate__slow">
+        <p>Welcome to Reading Oasis Public Library</p>
+        <span>Bringing Books to Your Fingertips</span><br>
+        <button type="button" class="ex-btn">Explore</button>
+      </div>
+      <!-- <img class="arrow-img z-3 position-absolute" src="{% static 'images/arrow.png' %}" alt="arrow"> -->
+      <div class="animated-div animate__animated"><i class="icon fa-solid fa-arrow-down" style="color: #40192f;"></i></div>
+    </div>
+</section>
+
+<section id="about-home">
+  <div class="container centered-div">
+    <div class="text-center">
+      <div class="box">
+        <div class="box-content">
+          <i class="fa-solid fa-handshake handshake"></i>
+          <p class="text-center">Library Services from the comfort of your home</p>
+          <span class="d-flex justify-content-center">At Resource Oasis, we we prioritize your safety and convenience. Our system enables you to browse and borrow books from our vast collection from anywhere, anytime.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="collection-home">
+  <div class="container">
+    <div class="box-collection">
+      <p class="text-center">Explore our Collection</p>
+      <span class="text-center d-flex">Our collection consists of a wide range of books spanning across different genres. Whether you're looking for fiction or non - fiction, we have something for everyone.</span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Inline JS -->
+<script>
+  window.addEventListener('scroll', function() {
+    var animatedDiv = document.querySelector('.animated-div');
+    var distanceFromTop = animatedDiv.getBoundingClientRect().top;
+  
+    if (distanceFromTop - window.innerHeight < 0) {
+      animatedDiv.classList.add('animate__fadeInUp');
+      animatedDiv.classList.add('animate__slow');
+    }
+  });      
+</script>

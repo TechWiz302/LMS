@@ -1,0 +1,44 @@
+body {
+  background-color: #f2f2f2;
+  font-family: "Raleway", sans-serif !important;
+  text-align: center;
+}
+
+h1, h2{
+    color: #401923 !important;
+}
+
+.des-col {
+  background-color: #f2eae9;
+  min-height: 100vh;
+}
+
+.brand-logo img {
+  padding: 6% 0 3% 0;
+  width: 15%;
+}
+
+.loginImages {
+  height: 30px;
+  width: 30px;
+}
+
+.btn {
+  margin: 10px 5px 15px;
+}
+
+.btn:hover{
+    background-color: #401923 !important;
+}
+
+.input {
+  width: 60%;
+  padding: 1% 0 1% 1%;
+  margin: 8px 0;
+  border-radius: 25px;
+  border: 2px solid #401923;
+}
+
+.info-image{
+    padding: 7% 0 3% 0;;
+}

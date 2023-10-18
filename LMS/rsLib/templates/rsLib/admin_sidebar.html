@@ -1,0 +1,66 @@
+{% load static %}
+
+
+<section class="" id="sidebar">
+      <a href="#" class="brand">
+        <div id="Logo-Image" class="image-sec">
+          <a class="navbar-brand" href="#">
+            <img
+              src="{% static 'images/img2.png' %}"
+              alt="Logo"
+              class="d-inline-block align-text-center logo-image"
+            />
+          </a>
+          <div class="img-con">
+            <p class="img-p container-fluid">Reading Oasis</p>
+            <br />
+            <p class="img-sub container-fluid">Public Library</p>
+          </div>
+        </div>
+      </a>
+      <ul class="side-menu top">
+        <li class="active">
+          <a href="#">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_dashboard/issue_requests/' %}">
+            <i class="bx bxs-book"></i>
+            <span class="text">Issued Books</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-hourglass-start"></i>
+            <span class="text">Pending Requests</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bi bi-journal-arrow-down"></i>
+            <span class="text">Returned Books</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-user"></i>
+            <span class="text">Registered Users</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-people-group"></i>
+            <span class="text">Team</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="text">Log Out</span>
+          </a>
+        </li>
+      </ul>
+    </section>

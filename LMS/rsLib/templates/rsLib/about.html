@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'rsLib/style.css' %}"
+    />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&family=Playfair+Display&family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CDN Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+
+    <!-- Animate CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--    Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/a769059ecb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+    <title>Resource Oasis | About</title>
+</head>
+<body>
+    <section>
+        {% include "rsLib/header.html" %}
+    </section>
+    
+    <section id="about">
+        <div class="contanier-flui img-container">
+                <div class="img-div col-12 col-xl-6">
+                    <img class="about-img" src="{% static 'images/about-lib.png' %}" alt="about-lib">
+                </div>
+                <div class="col-div col-12 col-xl-6">
+                    <div>
+                        <p class="about-p text-center">About</p>
+                        <span class="about-span d-flex  justify-content-center">Welcome to Resource Oasis, where readers explore diverse book collections. From classic literature to contemporary bestsellers, we offer a wide range of topics. Our mission is to foster a love of reading, as it leads to personal growth and knowledge. Find and check out books effortlessly on our user-friendly platform. Our dedicated staff is here to assist you. Join our community today and experience the joy of reading!</span>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container-fluid">
+            <div class="footer-con text-center">
+                <p class="text-center">Staff & Board Members</p>
+                <span class="d-flex justify-content-center">At Resource Oasis, we have a team of dedicated professionals who are passionate about books and reading. Get to know our team members below:</span>
+            </div>
+            <div class="mem-box box-con">
+                <div class="team-div container-fluid">
+                    <div class="row">
+                        <div class="text-center col-12 col-lg-6">
+                            <p class="team-p">Staff</p>
+                            <div class="staff">
+                                <p class="staff-p">Harsh Jannawar</p>
+                                <span class="text-center staff-span">Library Director</span>
+                            </div>
+                            <div class="staff">
+                                <p class="staff-p">Anish Zaveri</p>
+                                <span class="text-center staff-span">Librarian</span>
+                            </div>
+                            <div class="staff">
+                                <p class="staff-p">Sachin Rai</p>
+                                <span class="text-center staff-span">Librarian</span>
+                            </div>
+                            <div class="staff">
+                                <p class="staff-p">Abhijeet Pawar</p>
+                                <span class="text-center staff-span">Program Coordinator</span>
+                            </div>
+                        </div>
+                        <div class="text-center col-12 col-lg-6">
+                            <p class="team-p">Board</p>
+                            <div class="staff">
+                                <p class="staff-p">Prince Kalsi </p>
+                                <span class="text-center staff-span">Chairman</span>
+                            </div>
+                            <div class="staff">
+                                <p class="staff-p">Sanjali Lalge</p>
+                                <span class="text-center staff-span">Vice Chair</span>
+                            </div>
+                            <div class="staff">
+                                <p class="staff-p">Manish Sonawane</p>
+                                <span class="text-center staff-span">Council Representative</span>
+                            </div>
+                            <div class="staff">
+                                <p class="staff-p">Disha Roy</p>
+                                <span class="text-center staff-span">Treasurer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+        </div>
+    </section>
+
+    <br><br><br>
+
+    <section id="footer">
+        {% include "rsLib/footer.html" %}
+    </section>
+
+    <!-- JS Script CDNs and reference -->
+
+    <script src="{% static 'rsLib/script.js' %}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+      integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

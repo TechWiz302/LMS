@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 "/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'rsLib/style.css' %}"
+    />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Oxygen:wght@300&family=Playfair+Display&family=Raleway:wght@300&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CDN Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+
+    <!-- Animate CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--    Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/a769059ecb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+
+    <!-- Google Maps API -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9-q7ivz-3_pDdQa6p4hGcj0K6w3B0O4I&libraries=places"></script> -->
+
+    <title>Reading Oasis | Search Results</title>
+  </head>
+<body>
+
+    <section>
+        {% include "rsLib/header.html" %}
+    </section>
+
+
+    <section id="book-search">
+        <form class="search-input" method="GET" action="{% url 'search_books' %}">
+            <div class="input-group">
+                <input class="form-control" type="search" name="q" placeholder="Search book" aria-label="Search">
+                <button class="btn btn-search" type="submit">Search</button>
+            </div>
+        </form>
+
+        <p class="search-query">Results for {{search_query}}</p>
+
+        {% if results %}
+    <div class="col-box container-fluid">
+      <div class="row">
+        {% for book in results %}
+          <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="book-item">
+              {% if book.volumeInfo.imageLinks %}
+                <div class="image-container text-center search-images">
+                  <a href="{% url 'book_details' book.volumeInfo.title|urlencode book.id %}">
+                    <img class="book-image animate__animated" src="{{ book.volumeInfo.imageLinks.thumbnail }}" alt="Cover Image">
+                    <p class="title-name">{{ book.volumeInfo.title }}</p>
+                  </a>
+                </div>
+
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+{% endif %}
+
+
+        <br><br>
+    </section>
+
+
+
+    <section id="footer">
+        {% include "rsLib/footer.html" %}
+    </section>
+
+
+     <!-- JS Script CDNs and reference -->
+
+    <script src="{% static 'rsLib/script.js' %}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+      integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

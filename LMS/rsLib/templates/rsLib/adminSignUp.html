@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 " />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'rsLib/login.css' %}"
+    />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&family=Playfair+Display&family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CDN Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- Animate CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!--    Font Awesome-->
+    <script
+      src="https://kit.fontawesome.com/a769059ecb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+
+    <title>Reading Oasis | SignUp</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="form-col col-md-7 col-12">
+                <div class="brand">
+                    <div class="brand-logo text-center">
+                        <a href=""><img src="{% static 'images/img2.png' %}" alt="logo" class="logo"></a>
+                    </div>
+                </div>
+                <h2 class="form-title text-center">Create new account</h2>
+                <div class="social">
+                    <div class="o-auth text-center">
+                        <button class="btn btn-outline-dark" type="button"><img src="{% static 'images/facebook.png' %}"
+                                alt="google-logo" class="loginImages"> Sign up with Facebook</button>
+                        <button class="btn btn-outline-dark" type="button"><img src="{% static 'images/google-image.png' %}"
+                                alt="google-logo" class="loginImages"> Sign up with
+                            Google</button>
+                    </div>
+
+                <form action="" class="signupForm" method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="text-center">
+                        <div class="form_group">
+                        <div class="field-Name">
+                            <div class="input-icon input-name">
+                                <input type="text" id="signupName" class="input" name="username" required placeholder="Enter your username"
+                                    autofocus="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <div class="field-signupEmail">
+                            <div class="input-icon input-email">
+                                <input type="text" id="signupEmail" class="input" name="email" required placeholder="Enter your Email"
+                                    autofocus="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <div class="field-inputPassword">
+                            <div class="input-icon input-pwd">
+                                <input type="password" id="inputPasswordAuth" class="input" name="password" required
+                                    placeholder="Enter your Password" autofocus="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <div class="field-inputPassword">
+                            <div class="input-icon input-pwd">
+                                <input type="password" id="inputCPasswordAuth" class="input" name="cpassword" required
+                                    placeholder="Confirm Password" autofocus="true">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="forget-password">
+                        <p>
+                            <a href="#" id="forget-password">Forgot your Password?</a>
+                        </p>
+                    </div>
+
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-lg btn-outline-dark">Sign In</button>
+                    </div>
+
+                    <div class="login-account">
+                        <p>Already member? <a href="{% url 'admin_login' %}" id="goLogin">Log In</a></p>
+                    </div>
+                    {% if error_message %}
+                            <div class="alert alert-danger text-center" role="alert">
+                                {{ error_message }}
+                            </div>
+                            {% endif %}
+                </div>
+                </form>
+                </div>
+            </div>
+            <div class="des-col col-md-5 col-12 text-center">
+                <div class="info-section">
+                    <div class="image-box">
+                        <img src="{% static 'images/info.png' %}" class="info-image" alt="VARS">
+                        <h1>Reading Oasis | Admin SignUp</h1>
+                        <p>
+                            Thank you for being a part of Resource Oasis, where we promote the joy of reading and offer an extensive collection of diverse books to our valued readers. As an administrator, you hold the key to maintaining the magic of this literary oasis. Your dedication ensures that our users have a seamless and delightful experience while exploring the vast realm of literature.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

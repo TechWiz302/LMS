@@ -1,0 +1,15 @@
+<h1>Recent Orders</h1>
+<ul>
+  {% for order in recent_orders %}
+    <li>
+      {{ order.title }} -
+      {% if order.issued_at %}
+        {{ order.issued_at }}
+      {% else %}
+        {{ order.requested_at }}
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>No recent orders found.</li>
+  {% endfor %}
+</ul>

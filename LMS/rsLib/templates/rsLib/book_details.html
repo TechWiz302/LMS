@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+  <link rel="stylesheet" type="text/css" href="{% static 'rsLib/style.css' %}" />
+
+  <!-- Google Font Link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300&family=Oxygen:wght@300&family=Playfair+Display&family=Poppins:wght@300&family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+  <!-- Bootstrap CDN Link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!--    Font Awesome-->
+  <script src="https://kit.fontawesome.com/a769059ecb.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png" href="{% static 'images/img.png' %}" />
+  <title>Resource Oasis | Book Details</title>
+</head>
+
+<body>
+  <section>
+    {% include "rsLib/header.html" %}
+  </section>
+
+  <section class="me">
+    <div id="alertMessage" class="text-center">
+        {% if messages %}
+          <div class="alert alert-danger text-center">
+            <i class="fa-solid fa-circle-check"></i>
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+          {% endif %}
+    </div>
+  </section>
+
+  <section id="book-details">
+    <div class="container-fluid">
+      <div class="row issue-book">
+        <div class="col-12 col-lg-6">
+          <div class="Bookimg">
+            <img class="cover-img" src="{{ cover_image }}" alt="Cover Image">
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="book-con">
+            <p>{{title}}</p>
+            <p class="author-name">{{ authors }}</p>
+            <!-- <p>{{volume_id}}</p> -->
+          </div>
+          <div class="issueBtn">
+            {% if user.is_authenticated %}
+            <form id="issueForm" action="{% url 'issue_request' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="title" value="{{ title }}">
+              <input type="hidden" name="volume_id" value="{{ volume_id }}">
+              <button type="submit" class="issue-btn">Issue</button>
+            </form>
+            {% else %}
+            <button type="button" class="issue-btn" onclick="redirectToLogin()">Issue</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="line"></div>
+  
+      <div class="row issue-book">
+        <div class="col-12 col-lg-6">
+          <p class="book-des">Description</p>
+          <p id="descriptionContent" class="description">{{description}}</p>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="book-con">
+            <p>Editors</p>
+            <p class="author-name">{{ editors }}</p>
+  
+            <p>Language</p>
+            <p class="author-name">{{ language }}</p>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="footer">
+    {% include "rsLib/footer.html" %}
+  </section>
+
+  <!-- JS Script CDNs and reference -->
+
+  <script src="{% static 'rsLib/script.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
+
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const descriptionElement = document.getElementById('descriptionContent');
+      const descriptionText = descriptionElement.textContent.trim();
+      const descriptionWithoutTags = removeHTMLTags(descriptionText);
+      descriptionElement.textContent = descriptionWithoutTags;
+    });
+
+    function removeHTMLTags(input) {
+      return input.replace(/<[^>]+>/g, '');
+    }
+
+  </script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const descriptionElement = document.getElementById('descriptionContent');
+      const descriptionText = descriptionElement.textContent.trim();
+      const words = descriptionText.split(' ');
+      const maxWords = 80;
+
+      if (words.length > maxWords) {
+        const visibleContent = words.slice(0, maxWords).join(' ');
+        const remainingContent = words.slice(maxWords).join(' ');
+
+        const truncatedContent = `${visibleContent}... <a href="#" id="readMoreLink">Read more</a>`;
+        descriptionElement.innerHTML = truncatedContent;
+
+        descriptionElement.addEventListener('click', function (event) {
+          if (event.target && event.target.id === 'readMoreLink') {
+            event.preventDefault();
+            descriptionElement.innerHTML = `${visibleContent} ${remainingContent} <a href="#" id="readLessLink">Read less</a>`;
+
+            const readLessLink = document.getElementById('readLessLink');
+            readLessLink.addEventListener('click', function (event) {
+              event.preventDefault();
+              descriptionElement.innerHTML = truncatedContent;
+            });
+          }
+        });
+      }
+    });
+
+  </script>
+ 
+  <script>
+    function redirectToLogin() {
+        const currentUrl = window.location.href;
+        window.location.href = "{% url 'login' %}?next=" + encodeURIComponent(currentUrl);
+    }
+  </script>
+
+</body>
+
+</html>
